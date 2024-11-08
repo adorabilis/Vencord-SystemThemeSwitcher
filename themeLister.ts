@@ -4,19 +4,19 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
+import { getIntlMessage } from "@utils/discord";
 import { PluginSettingSelectOption } from "@utils/types";
 import { mapMangledModuleLazy } from "@webpack";
-import { i18n } from "@webpack/common";
 
 import * as themeToggler from "./themeToggler";
 import { DiscordTheme, ToggledTheme } from "./types";
 
 const classicThemeList: Array<DiscordTheme> = [
-    { theme: "light", getName: () => i18n.Messages.THEME_LIGHT },
-    { theme: "dark", getName: () => i18n.Messages.THEME_DARK },
+    { theme: "light", getName: () => getIntlMessage("THEME_LIGHT") },
+    { theme: "dark", getName: () => getIntlMessage("THEME_DARK") },
 ];
 const nitroThemeList: { themes: Array<DiscordTheme>; } = mapMangledModuleLazy(",colors:[{", {
-    themes: t => Array.isArray(t) && t[0].theme
+    themes: t => Array.isArray(t) && t[0].colors
 });
 
 /**
