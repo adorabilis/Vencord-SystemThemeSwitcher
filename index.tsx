@@ -14,7 +14,7 @@ import { ToggledTheme } from "./types";
 const settings = pluginSettings.getPluginSettings(onChange);
 
 let currentTheme: ToggledTheme | null = null;
-let intervalHandle: NodeJS.Timer | null = null;
+let intervalHandle: NodeJS.Timeout | null = null;
 let pluginStarted: boolean = false;
 
 function onChange() {

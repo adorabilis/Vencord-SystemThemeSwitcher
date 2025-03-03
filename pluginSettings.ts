@@ -14,23 +14,23 @@ import { ToggledTheme } from "./types";
 
 function getToggledThemeSettings(theme: ToggledTheme, onChange: () => void): SettingsDefinition {
     const themeName = theme === ToggledTheme.Light ? "Light Theme" : "Dark Theme";
+    const defaultStartTime = theme === ToggledTheme.Light ? "08:00" : "20:00";
 
     return {
         themeStartTime: {
-            description: `${themeName} Start Time (HH:MM)`,
+            description: `In HH:MM format. For example: ${defaultStartTime}`,
             type: OptionType.STRING,
-            default: theme === ToggledTheme.Light ? "08:00" : "20:00",
+            default: defaultStartTime,
             onChange
         },
         theme: {
-            description: themeName,
+            description: "",
             type: OptionType.SELECT,
             options: proxyLazy(() => themeLister.getSelectOptions(theme)),
             onChange
         },
         themeURLs: {
             type: OptionType.COMPONENT,
-            description: "",
             onChange,
             component: props => ThemeLinksComponent(
                 props,
