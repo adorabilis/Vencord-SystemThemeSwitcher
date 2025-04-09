@@ -10,22 +10,24 @@ import { findByCodeLazy } from "@webpack";
 
 import { DiscordTheme } from "./types";
 
-const logger = new Logger("AutoThemeSwitcher", "#BBBBBB");
+const logger = new Logger("SystemThemeSwitcher", "#BBBBBB");
 
 interface SaveThemeRequest {
-    theme: string;
-    backgroundGradientPresetId?: number;
+  theme: string;
+  backgroundGradientPresetId?: number;
 }
 
-const saveClientTheme: (theme: SaveThemeRequest) => void
-    = findByCodeLazy('type:"UNSYNCED_USER_SETTINGS_UPDATE', '"system"===');
+const saveClientTheme: (theme: SaveThemeRequest) => void = findByCodeLazy(
+  'type:"UNSYNCED_USER_SETTINGS_UPDATE',
+  '"system"===',
+);
 
 /**
  * @param theme A Discord theme
  * @returns An HTML ID-friendly identifier for the theme
  */
 export function themeToString(theme: DiscordTheme) {
-    return theme.theme + "-" + theme.id;
+  return theme.theme + "-" + theme.id;
 }
 
 /**
@@ -33,16 +35,16 @@ export function themeToString(theme: DiscordTheme) {
  * @param theme The identifier of the Discord theme to set (as returned by {@link themeToString})
  */
 export function changeDiscordTheme(theme: string) {
-    const themeComponents = theme.split("-");
-    const saveThemeRequest: SaveThemeRequest = { theme: themeComponents[0] };
+  const themeComponents = theme.split("-");
+  const saveThemeRequest: SaveThemeRequest = { theme: themeComponents[0] };
 
-    const themeId = parseInt(themeComponents[1]);
-    if (!isNaN(themeId)) {
-        saveThemeRequest.backgroundGradientPresetId = themeId;
-    }
+  const themeId = parseInt(themeComponents[1]);
+  if (!isNaN(themeId)) {
+    saveThemeRequest.backgroundGradientPresetId = themeId;
+  }
 
-    saveClientTheme(saveThemeRequest);
-    logger.info("Discord Theme changed to", saveThemeRequest);
+  saveClientTheme(saveThemeRequest);
+  logger.info("Discord Theme changed to", saveThemeRequest);
 }
 
 /**
@@ -50,13 +52,15 @@ export function changeDiscordTheme(theme: string) {
  * @param urls The new CSS URLs (1 per line)
  */
 export function changeCustomCssUrls(urls: string) {
-    Settings.themeLinks = [...new Set(
-        urls
-            .trim()
-            .split(/\n+/)
-            .map(s => s.trim())
-            .filter(Boolean)
-    )];
+  Settings.themeLinks = [
+    ...new Set(
+      urls
+        .trim()
+        .split(/\n+/)
+        .map((s) => s.trim())
+        .filter(Boolean),
+    ),
+  ];
 
-    logger.info("Vencord Theme Links changed to", Settings.themeLinks);
+  logger.info("Vencord Theme Links changed to", Settings.themeLinks);
 }

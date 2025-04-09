@@ -1,20 +1,12 @@
-# AutoThemeSwitcher
+# SystemThemeSwitcher
 
-A plugin for [Vencord, a Discord client mod](https://vencord.dev) that automatically switches between 2 themes based on the time of day. Useful for people that would like to set up a "light theme at day, dark theme at night" schedule.
+A modified version of [maddie480's AutoThemeSwitcher plugin](https://github.com/maddie480/Vencord-AutoThemeSwitcher) for [Vencord, a Discord client mod](https://vencord.dev) that automatically switches between custom light and dark themes based on your system appearance settings rather than time of day.
 
-![Screenshot of plugin settings](https://maddie480.ovh/static/img/auto-theme-switcher.png)
+![Screenshot of plugin settings](https://github.com/user-attachments/assets/a17be635-15c0-468b-8f20-cc709bc93184)
 
-## Installing the plugin
+## Installing The Plugin
 
 Please refer to [the Vencord docs](https://docs.vencord.dev/installing/custom-plugins/) for instructions on installing and updating userplugins.
-
-## Start Times
-
-The default schedule is:
-- Light theme starts at 08:00
-- Dark theme starts at 20:00
-
-This means the light theme will be applied from 08:00 to 20:00, and the dark theme from 20:00 to 08:00.
 
 ## Theme Configurations
 
